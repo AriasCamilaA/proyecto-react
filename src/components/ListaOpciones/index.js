@@ -1,6 +1,6 @@
 import "./ListaOpciones.css";
 
-const ListaOpciones = () =>{
+const ListaOpciones = (props) =>{
 
     const equipos = [
         "Programación",
@@ -12,9 +12,14 @@ const ListaOpciones = () =>{
         "Innovación y Gestión"
     ]
 
+    const manejarCambio = (e) => {
+        props.actualizarValor(e.target.value)    
+    }
+
     return <div className="lista-opciones">
         <label>Equipos</label>
-        <select>
+        <select value={props.valor} onChange={manejarCambio}>
+            <option value="" disabled defaultValue="" hidden>Seleccionar equipo</option>
             {equipos.map((equipo, index) => <option key={index}>{equipo}</option>)}
         </select>
     </div>
