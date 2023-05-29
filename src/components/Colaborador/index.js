@@ -5,7 +5,7 @@ const Colaborador = (props) => {
     const {nombre, puesto, foto, equipo} = props.datos
 
     return <div className="colaborador">
-        <div className="encabezado">
+        <div className="encabezado" style={{backgroundColor:props.colorPrimario}}>
             <img src={foto} alt={nombre}/>
         </div>
         <div className="info">
