@@ -11,7 +11,10 @@ const Formulario = (props) => {
     const [foto, setFoto] = useState("")
     const [equipo, setEquipo] = useState("")
 
-    const {registrarColaborador} = props
+    const [titulo, setTitulo] = useState("")
+    const [color, setColor] = useState("")
+
+    const {registrarColaborador, crearEquipo} = props
 
     const manejarEnvio = (e) =>{
         e.preventDefault()
@@ -23,6 +26,12 @@ const Formulario = (props) => {
         }
         registrarColaborador(datosAEnviar)
     }
+
+    const manejarNuevoEquipo = (e) =>{
+        e.preventDefault()
+        crearEquipo({ titulo, colorPrimario: color })
+    }
+
     return <section className="formulario">
         <form onSubmit={manejarEnvio}>
             <h2>
@@ -55,6 +64,26 @@ const Formulario = (props) => {
                 equipos={props.equipos}
             />
             <Boton>Crear</Boton>
+        </form>
+        <form onSubmit={manejarNuevoEquipo}>
+            <h2>
+                Rellena el formulario para crear equipo.
+            </h2>
+            <CampoTexto 
+                titulo="Título" 
+                placeholder="ingresa título" 
+                required 
+                valor={titulo} 
+                actualizarValor={setTitulo}
+                />
+            <CampoTexto 
+                titulo="Color" 
+                placeholder="Ingresar el color en HEX #f2ff2f2" 
+                required
+                valor={color} 
+                actualizarValor={setColor}
+                />
+            <Boton>Registrar equipo</Boton>
         </form>
     </section>
 }
